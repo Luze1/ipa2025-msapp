@@ -10,13 +10,14 @@ from pymongo import MongoClient
 
 sample = Flask(__name__)
 
-mongo_uri  = os.environ.get("MONGO_URI")
-db_name    = os.environ.get("DB_NAME")
+mongo_uri = os.environ.get("MONGO_URI")
+db_name = os.environ.get("DB_NAME")
 
 client = MongoClient(mongo_uri)
 mydb = client[db_name]
 myint = mydb["interface_status"]
 myrouter = mydb["routers"]
+
 
 @sample.route("/")
 def main():
@@ -25,6 +26,7 @@ def main():
         data.append(x)
     return render_template("index.html", data=data)
 
+
 @sample.route("/add", methods=["POST"])
 def add_comment():
     ip = request.form.get("ip")
@@ -32,11 +34,12 @@ def add_comment():
     password = request.form.get("password")
 
     if ip and username and password:
-        mydict  = ({"ip" : ip, "username" : username, "password" : password})
+        mydict = {"ip": ip, "username": username, "password": password}
         myrouter.insert_one(mydict)
     return redirect(url_for("main"))
 
-@sample.route('/router/<ip>')
+
+@sample.route("/router/<ip>")
 def handle_ip(ip):
     # Find the latest 3 router records for the selected IP, sorted by timestamp descending
     routers = list(myint.find({"router_ip": ip}).sort("timestamp", -1).limit(3))
@@ -77,15 +80,17 @@ def handle_ip(ip):
     """
     return render_template_string(html, ip=ip, routers=routers)
 
+
 @sample.route("/delete", methods=["POST"])
 def delete_comment():
     try:
         idx = request.form.get("idx")
-        query = {'_id': ObjectId(idx)}
+        query = {"_id": ObjectId(idx)}
         myrouter.delete_one(query)
     except Exception:
         pass
     return redirect(url_for("main"))
+
 
 if __name__ == "__main__":
     sample.run(host="0.0.0.0", port=8080)
