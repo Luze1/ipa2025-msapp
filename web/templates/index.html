@@ -15,7 +15,7 @@
   <ul>
     {% for comment in data %}
       <li>
-	       {{ comment.ip }} - {{ comment.username }}	 
+         <a href="/router/{{ comment.ip }}">{{ comment.ip }}</a> - {{ comment.username }}	 
          <form method="POST" action="{{ url_for('delete_comment') }}" style="display:inline">
            <input type="hidden" name="idx" value="{{ comment._id }}">
            <button type="submit">Delete</button>
