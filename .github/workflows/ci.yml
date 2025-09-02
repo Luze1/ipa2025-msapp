@@ -42,10 +42,10 @@ jobs:
 
     - name: Build & Push Docker Images
       run: |
-        docker build -t chotipatp/worker:latest ./worker
-        docker build -t chotipatp/scheduler:latest ./scheduler
-        docker build -t chotipatp/web:latest ./web
+        docker build -t nijitpong/worker:latest ./worker
+        docker build -t nijitpong/scheduler:latest ./scheduler
+        docker build -t nijitpong/web:latest ./web
 
-        docker push chotipatp/worker:latest
-        docker push chotipatp/scheduler:latest
-        docker push chotipatp/web:latest
+        docker push nijitpong/worker:latest
+        docker push nijitpong/scheduler:latest
+        docker push nijitpong/web:latest
