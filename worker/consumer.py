@@ -1,4 +1,6 @@
-import os, time, pika
+import os
+import time
+import pika
 
 from callback import callback
 

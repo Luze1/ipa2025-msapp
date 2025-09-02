@@ -41,7 +41,6 @@ def add_comment():
 
 @sample.route("/router/<ip>")
 def handle_ip(ip):
-    # Find the latest 3 router records for the selected IP, sorted by timestamp descending
     routers = list(myint.find({"router_ip": ip}).sort("timestamp", -1).limit(3))
     html = """
     <html>
