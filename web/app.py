@@ -41,7 +41,7 @@ def add_comment():
 
 @sample.route("/router/<ip>")
 def handle_ip(ip):
-    routers = list(myint.find({"router_ip": ip}).sort("timestamp", -1).limit(3))
+    routers = list(myint.find({"router_ip": ip}).sort("timestamp", -1).limit(5))
     html = """
     <html>
     <head>

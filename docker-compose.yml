@@ -52,7 +52,39 @@ services:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
 
-  worker:
+  worker1:
+      build: ./worker
+      depends_on:
+        - mongo
+        - rabbitmq
+        - scheduler
+      networks:
+        - app-net
+      env_file:
+        - .env
+      environment:
+        MONGO_URI: "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/"
+        DB_NAME: "ipa2025"
+        RABBITMQ_DEFAULT_USER: "${RABBITMQ_DEFAULT_USER}"
+        RABBITMQ_DEFAULT_PASS: "${RABBITMQ_DEFAULT_PASS}"
+
+  worker2:
+      build: ./worker
+      depends_on:
+        - mongo
+        - rabbitmq
+        - scheduler
+      networks:
+        - app-net
+      env_file:
+        - .env
+      environment:
+        MONGO_URI: "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/"
+        DB_NAME: "ipa2025"
+        RABBITMQ_DEFAULT_USER: "${RABBITMQ_DEFAULT_USER}"
+        RABBITMQ_DEFAULT_PASS: "${RABBITMQ_DEFAULT_PASS}"
+
+  worker3:
       build: ./worker
       depends_on:
         - mongo
