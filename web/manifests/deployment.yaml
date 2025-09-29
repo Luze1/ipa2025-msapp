@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: ipa2025-msapp-web
-          image: ${DOCKERHUB_USERNAME}/web:latest
+          image: nijitpong/web:latest
           ports:
             - containerPort: 8080
           envFrom:
