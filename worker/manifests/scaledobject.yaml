@@ -13,8 +13,11 @@ spec:
   triggers:
     - type: rabbitmq
       metadata:
+        hostFromEnv: RABBITMQ_HOST 
+        usernameFromEnv: RABBITMQ_DEFAULT_USER
+        passwordFromEnv: RABBITMQ_DEFAULT_PASS
         queueName: router_jobs
         mode: QueueLength
         value: "10"
         protocol: auto
-        hostFromEnv: RABBITMQ_URI
+        
