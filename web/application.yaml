@@ -6,7 +6,7 @@ metadata:
 spec:
   project: ipa2025
   source:
-    repoURL: 'https://github.com/FewPz/ipa2025-msapp'
+    repoURL: 'https://github.com/Luze1/ipa2025-msapp.git'
     targetRevision: HEAD
     path: web/manifests
   destination:
